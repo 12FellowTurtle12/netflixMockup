@@ -16,9 +16,14 @@ export default function Home(props) {
   return (
     <>
       <div>Home {name}</div>{" "}
-      {suggestions.map((suggestion, index) => {
-        return <Suggestion key={index} suggestion={suggestion} />;
-      })}
+      {suggestions ? (
+        suggestions.map((suggestion, index) => {
+          return <Suggestion key={index} suggestion={suggestion} />;
+        })
+      ) : (
+        <p>No suggestions available</p>
+      )}
     </>
   );
+  
 }
