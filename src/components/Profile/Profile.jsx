@@ -7,6 +7,7 @@ const Card = styled.div`
   max-width: 300px;
   cursor: pointer;
   color: gray;
+  transition: color 0.3s;
 
   &:hover {
     color: white;
@@ -16,29 +17,31 @@ const Card = styled.div`
 const Avatar = styled.img`
   width: 100%;
   border-radius: 0.2rem;
+  transition: transform 0.3s;
+
+  ${Card}:hover & {
+    transform: rotate(3deg);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
 `;
 
 const Name = styled.h2`
   text-align: center;
+  transition: color 0.3s;
+
+  ${Card}:hover & {
+    color: white;
+  }
 `;
 
 function Profile(props) {
   const { profile, setActiveProfile } = props;
-  /*
-{
-    id: 7,
-    name: "Lawson",
-    avatar: "https://reqres.in/img/faces/7-image.jpg",
-  }
-*/
   const { name, avatar } = profile;
 
   const history = useHistory();
 
   const activeProfileHandler = () => {
-    //set active profile
     setActiveProfile(profile);
-    //history push'la
     history.push("/home");
   };
 
