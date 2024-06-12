@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { userSuggestionsData } from "../userSuggestions";
 import Suggestion from "../components/Suggestion/Suggestion";
+import Hero from "../components/Hero/Hero";
 
 /* eslint-disable react/prop-types */
 export default function Home(props) {
@@ -13,17 +14,20 @@ export default function Home(props) {
     setSuggestions(suggestionData);
   }, [activeProfile]);
 
+  useEffect(() => {
+    console.log("mount oldu");
+    return function () {
+      //return'de fonksiyon unmount eventi
+      console.log("unmount oldu");
+    };
+  }, []); //boş dependency array mount eventi
+
   return (
     <>
-      <div>Home {name}</div>{" "}
-      {suggestions ? (
-        suggestions.map((suggestion, index) => {
-          return <Suggestion key={index} suggestion={suggestion} />;
-        })
-      ) : (
-        <p>No suggestions available</p>
-      )}
+      <Hero activeProfile={activeProfile} />
+      {suggestions.map((suggestion, index) => {
+        return <Suggestion key={index} suggestion={suggestion} />;
+      })}
     </>
   );
-  
 }
