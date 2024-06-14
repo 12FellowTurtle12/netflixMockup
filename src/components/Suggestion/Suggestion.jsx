@@ -33,7 +33,7 @@ function Suggestion(props) {
       .get("https://movies-api14.p.rapidapi.com/" + category, {
         headers: {
           "x-rapidapi-key":
-            "2ce04038e2msh104054e193ec289p18cdf9jsnb6a4a44d19e9",
+            "644f4459b6msh45c2e29bccdaa1fp12344bjsn9beb4146123e",
           "x-rapidapi-host": "movies-api14.p.rapidapi.com",
         },
       })
