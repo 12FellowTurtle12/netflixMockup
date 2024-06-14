@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router
 import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import "./App.css";
 import Login from "./pages/Login";
+import Welcome from "./pages/welcome";
 import styled, { createGlobalStyle } from 'styled-components';
 import Footer from './components/Footer/Footer';
 
@@ -176,6 +177,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
+        <Route path="/welcome" component={Welcome} />
       </Switch>
       <Footer />
     </Router>
