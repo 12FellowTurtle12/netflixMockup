@@ -6,6 +6,7 @@ import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import "./App.css";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
+import Home from "./pages/Home";
 import styled, { createGlobalStyle } from 'styled-components';
 import Footer from './components/Footer/Footer';
 
@@ -82,7 +83,7 @@ export const Ul = styled.ul`
 
 
 
-const Home = () => {
+const App = () => {
   const history = useHistory();
 
 const handleGetStarted = () => {
@@ -175,9 +176,10 @@ const App = () => {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={App} />
         <Route path="/login" component={Login} />
         <Route path="/welcome" component={Welcome} />
+        <Route path="/home" component={Home} />
       </Switch>
       <Footer />
     </Router>
