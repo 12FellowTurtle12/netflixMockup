@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router
 import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import "./App.css";
 import Login from "./pages/Login";
-import Welcome from "./pages/welcome";
+import Welcome from "./pages/Welcome";
 import styled, { createGlobalStyle } from 'styled-components';
 import Footer from './components/Footer/Footer';
 
