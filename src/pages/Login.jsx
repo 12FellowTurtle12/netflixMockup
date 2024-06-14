@@ -1,6 +1,14 @@
+/*
+tanımlamamız gerek state'ler: formData, errors, isValid
+tanımlamamız gereken initial değerler: initialFormData, errorMessages
+fonksiyonlar: changeHandler, submit
+isValid: butonu disable et, tüm form elemanlarını kontrol et(useEffect).
+form yapısını
+*/
+
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate for React Router v6
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const Form = styled.form`
@@ -82,7 +90,7 @@ export default function Login() {
     terms: false,
   });
   const [isValid, setIsValid] = useState(false);
-  const navigate = useNavigate(); // For React Router v6
+  const history = useHistory();
 
   useEffect(() => {
     const { email, password, terms } = formData;
@@ -105,8 +113,8 @@ export default function Login() {
     axios.post(URL, formData).then((response) => {
       setFormData(initialFormData);
       console.log(response.data);
-      // Cache data here if needed
-      navigate("/welcome"); // Use navigate instead of history.push
+      //cache'e aktar
+      history.push("/welcome");
     });
   }
 
@@ -132,13 +140,29 @@ export default function Login() {
     let { name, value, type, checked } = event.target;
     value = type === "checkbox" ? checked : value;
     setFormData({ ...formData, [name]: value });
-    // Validate and update errors
+    //validasyonlara göre errors kontrolü
     if (name === "email") {
-      setErrors({ ...errors, [name]: !validateEmail(value) });
-    } else if (name === "password") {
-      setErrors({ ...errors, [name]: !validatePassword(value) });
-    } else if (name === "terms") {
-      setErrors({ ...errors, [name]: !validateTerms(value) });
+      if (validateEmail(value)) {
+        setErrors({ ...errors, [name]: false });
+      } else {
+        setErrors({ ...errors, [name]: true });
+      }
+    }
+
+    if (name === "password") {
+      if (validatePassword(value)) {
+        setErrors({ ...errors, [name]: false });
+      } else {
+        setErrors({ ...errors, [name]: true });
+      }
+    }
+
+    if (name === "terms") {
+      if (validateTerms(value)) {
+        setErrors({ ...errors, [name]: false });
+      } else {
+        setErrors({ ...errors, [name]: true });
+      }
     }
   }
 
