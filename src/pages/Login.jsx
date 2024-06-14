@@ -1,14 +1,6 @@
-/*
-tanımlamamız gerek state'ler: formData, errors, isValid
-tanımlamamız gereken initial değerler: initialFormData, errorMessages
-fonksiyonlar: changeHandler, submit
-isValid: butonu disable et, tüm form elemanlarını kontrol et(useEffect).
-form yapısını
-*/
-
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // useNavigate for React Router v6
 import styled from "styled-components";
 
 const Form = styled.form`
@@ -90,7 +82,7 @@ export default function Login() {
     terms: false,
   });
   const [isValid, setIsValid] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate(); // For React Router v6
 
   useEffect(() => {
     const { email, password, terms } = formData;
@@ -113,8 +105,8 @@ export default function Login() {
     axios.post(URL, formData).then((response) => {
       setFormData(initialFormData);
       console.log(response.data);
-      //cache'e aktar
-      history.push("/welcome");
+      // Cache data here if needed
+      navigate("/welcome"); // Use navigate instead of history.push
     });
   }
 
@@ -140,29 +132,13 @@ export default function Login() {
     let { name, value, type, checked } = event.target;
     value = type === "checkbox" ? checked : value;
     setFormData({ ...formData, [name]: value });
-    //validasyonlara göre errors kontrolü
+    // Validate and update errors
     if (name === "email") {
-      if (validateEmail(value)) {
-        setErrors({ ...errors, [name]: false });
-      } else {
-        setErrors({ ...errors, [name]: true });
-      }
-    }
-
-    if (name === "password") {
-      if (validatePassword(value)) {
-        setErrors({ ...errors, [name]: false });
-      } else {
-        setErrors({ ...errors, [name]: true });
-      }
-    }
-
-    if (name === "terms") {
-      if (validateTerms(value)) {
-        setErrors({ ...errors, [name]: false });
-      } else {
-        setErrors({ ...errors, [name]: true });
-      }
+      setErrors({ ...errors, [name]: !validateEmail(value) });
+    } else if (name === "password") {
+      setErrors({ ...errors, [name]: !validatePassword(value) });
+    } else if (name === "terms") {
+      setErrors({ ...errors, [name]: !validateTerms(value) });
     }
   }
 

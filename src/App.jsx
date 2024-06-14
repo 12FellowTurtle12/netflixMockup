@@ -1,5 +1,6 @@
 import React from 'react';
 import homePageBackgroundImage from './assets/images/homePageBackgroundImage.jpg';
+import promotion1 from './assets/images/promotion1.gif';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
 import "./App.css";
@@ -55,7 +56,7 @@ const StyledContainer = styled(Container)`
   margin: 0;
 `;
 const StyledSectionFirst = styled.section`
-  margin-top: 55vh;
+  margin-top: 105vh;
   border-bottom: 1px solid #ccc;
   padding-bottom: 20;
   h2, p {
@@ -108,43 +109,62 @@ const handleGetStarted = () => {
         </StyledContainer>
       </StyledHeader>
 
+      
       <StyledSectionFirst>
-        <Container>
-          <Row>
-            <Col>
-              <h2>Promotional Section 1</h2>
-              <p>Content for promotional section 1 goes here.</p>
+    <Container>
+        <Row>
+            <Col xs={12}>
+                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                    <div style={{ textAlign: 'left', marginRight: '20px' }}>
+                        <h2>Watch everywhere</h2>
+                        <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+                    </div>
+                    <div>
+                        <img src={promotion1} alt="Promotional Image" style={{ width: '50%' }} />
+                    </div>
+                </div>
             </Col>
-          </Row>
-        </Container>
-      </StyledSectionFirst>
+        </Row>
+    </Container>
+</StyledSectionFirst>
 
-      <StyledSection>
-        <Container>
-          <Row>
-            <Col>
-              <h2>Promotional Section 2</h2>
-              <p>Content for promotional section 2 goes here.</p>
+<StyledSection style={{ marginBottom: '20px' }}>
+    <Container>
+        <Row>
+            <Col xs={12}>
+                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                    <div>
+                        <img src={promotion1} alt="Promotional Image" style={{ width: '50%' }} />
+                    </div>
+                    <div style={{ textAlign: 'left', marginLeft: '20px' }}>
+                        <h2>Subscribe once, watch everywhere</h2>
+                        <p>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+                    </div>
+                </div>
             </Col>
-          </Row>
-        </Container>
-      </StyledSection>
+        </Row>
+    </Container>
+</StyledSection>
 
-      <StyledSection>
-        <Container>
-          <Row>
-            <Col>
-              <h2>Promotional Section 3</h2>
-              <p>Content for promotional section 3 goes here.</p>
+<StyledSection style={{ marginBottom: '20px' }}>
+    <Container>
+        <Row>
+            <Col xs={12}>
+                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                    <div style={{ textAlign: 'left', marginRight: '20px' }}>
+                        <h2>Download your shows to watch offline</h2>
+                        <p>Save your favorites easily and always have something to watch.</p>
+                    </div>
+                    <div>
+                        <img src={promotion1} alt="Promotional Image" style={{ width: '50%' }} />
+                    </div>
+                </div>
             </Col>
-          </Row>
-        </Container>
-      </StyledSection>
-
-      <Footer></Footer>
+        </Row>
+    </Container>
+</StyledSection>
 
     </div>
-
     
   );
 };
@@ -152,12 +172,13 @@ const handleGetStarted = () => {
 const App = () => {
   return (
     <Router>
-    <GlobalStyle />
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/login" component={Login} />
-    </Switch>
-  </Router>
+      <GlobalStyle />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+      </Switch>
+      <Footer />
+    </Router>
 );
 };
 
