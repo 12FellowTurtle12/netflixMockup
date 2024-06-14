@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -18,26 +18,15 @@ const Avatar = styled.img`
   width: 100%;
   border-radius: 0.2rem;
   transition: transform 0.3s;
-
-  ${Card}:hover & {
-    transform: rotate(3deg);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  }
 `;
 
 const Name = styled.h2`
   text-align: center;
   transition: color 0.3s;
-
-  ${Card}:hover & {
-    color: white;
-  }
 `;
 
-function Profile(props) {
-  const { profile, setActiveProfile } = props;
+function Profile({ profile, setActiveProfile }) {
   const { name, avatar } = profile;
-
   const history = useHistory();
 
   const activeProfileHandler = () => {
