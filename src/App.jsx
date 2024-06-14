@@ -83,7 +83,7 @@ export const Ul = styled.ul`
 
 
 
-const App = () => {
+const App2 = () => {
   const history = useHistory();
 
 const handleGetStarted = () => {
@@ -176,7 +176,7 @@ const App = () => {
     <Router>
       <GlobalStyle />
       <Switch>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={App2} />
         <Route path="/login" component={Login} />
         <Route path="/welcome" component={Welcome} />
         <Route path="/home" component={Home} />
