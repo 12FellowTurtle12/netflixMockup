@@ -1,14 +1,19 @@
-import React from 'react';
-import homePageBackgroundImage from './assets/images/homePageBackgroundImage.jpg';
-import promotion1 from './assets/images/promotion1.gif';
-import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
-import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
-import "./App.css";
+import { Link, Route, Switch } from "react-router-dom";
+import React, { useState } from "react";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import Home from "./pages/Home";
+import homePageBackgroundImage from './assets/images/homePageBackgroundImage.jpg';
+import promotion1 from './assets/images/promotion1.gif';
+import { BrowserRouter as Router, useHistory } from 'react-router-dom';
+import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap';
+import "./App.css";
 import styled, { createGlobalStyle } from 'styled-components';
-import Footer from './components/Footer/Footer';
+
+// Import necessary components and styles
+// Make sure to import StyledHeader, StyledContainer, Row, Col, Form, StyledEmailInput, Button, Container, StyledSectionFirst, StyledSection
+// Also, define homePageBackgroundImage and promotion1 variables with correct image URLs
+
 
 const StyledEmailInput = styled(Form.Control)`
   height: 40px; /* Adjust the height as needed */
@@ -58,7 +63,7 @@ const StyledContainer = styled(Container)`
   margin: 0;
 `;
 const StyledSectionFirst = styled.section`
-  margin-top: 105vh;
+  margin-top: 55vh;
   border-bottom: 1px solid #ccc;
   padding-bottom: 20;
   h2, p {
@@ -82,16 +87,18 @@ export const Ul = styled.ul`
 `;
 
 
+function App() {
+  const [activeProfile, setActiveProfile] = useState(null);
 
-const App2 = () => {
-  const history = useHistory();
-
-const handleGetStarted = () => {
-    history.push('/login');
+  const handleGetStarted = () => {
+    // Define the functionality for the handleGetStarted function here
   };
 
   return (
-    <div>
+    <>
+      <Switch>
+        <Route exact path="/">
+          <div>
       <StyledHeader style={{ backgroundImage: `url(${homePageBackgroundImage})` }}>
         <StyledContainer>
           <Row>
@@ -165,25 +172,28 @@ const handleGetStarted = () => {
         </Row>
     </Container>
 </StyledSection>
-
     </div>
-    
-  );
-};
-
-const App = () => {
-  return (
-    <Router>
-      <GlobalStyle />
-      <Switch>
-        <Route exact path="/" component={App2} />
-        <Route path="/login" component={Login} />
-        <Route path="/welcome" component={Welcome} />
-        <Route path="/home" component={Home} />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/welcome">
+          <Welcome setActiveProfile={setActiveProfile} />
+        </Route>
+        <Route path="/home">
+          <Home activeProfile={activeProfile} />
+        </Route>
       </Switch>
-      <Footer />
-    </Router>
-);
-};
+      <div className="dev-navigation">
+        <Link to="/">HomePage</Link>
+        <Link to="/login" data-cy="route-login">
+          Login
+        </Link>
+        <Link to="/welcome">Welcome</Link>
+        <Link to="/home">Home</Link>
+      </div>
+    </>
+  );
+}
 
 export default App;
